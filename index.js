@@ -5,6 +5,8 @@ const yargs = require('yargs');
 const notes = require('./notes.js');
 var argv = yargs
 .command('list','list all file')
+.command('login','login')
+.command('logout','logout')
 .command('upload','upload a  file' ,{
     filename : {
     
@@ -43,6 +45,10 @@ if(command ==='list'){
   notes.downloadfiles(argv.fileid);
 }else if(command ==='delete'){
   notes.deletefiles(argv.fileid);
+}else if(command ==='logout'){
+  notes.logout();
+}else if(command ==='login'){
+  notes.login();
 }else {
   console.log('command not found');
 }

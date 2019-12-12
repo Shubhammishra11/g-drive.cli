@@ -49,6 +49,28 @@ var listfiles = () => {
                     //authorize(JSON.parse(content), uploadFile);
                 });
                 };
+        var logout = () => {
+            const fs = require('fs')
+
+                const path = './token.json'
+
+                try {
+                fs.unlinkSync(path)
+                //file removed
+                } catch(err) {
+                console.error('no user is login')
+                }
+        };
+        var login = () => {
+            fs.readFile('credentials.json', (err, content) => {
+                if (err) return console.log('Error loading client secret file:', err);
+                // Authorize a client with credentials, then call the Google Drive API.
+                authorize(JSON.parse(content), listFiles);
+                //authorize(JSON.parse(content), getFile);
+                //authorize(JSON.parse(content), uploadFile);
+            });
+            
+        };
     /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
@@ -197,5 +219,7 @@ module.exports = {
     listfiles,
     uploadfiles,
     downloadfiles,
-    deletefiles
+    deletefiles,
+    logout,
+    login
 };
